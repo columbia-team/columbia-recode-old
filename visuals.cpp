@@ -268,12 +268,15 @@ void Visuals::Hitmarker() {
 			box.y = g_shots.iPlayerbottom.y - box.h;
 
 			// text damage
-			if (!g_shots.iHeadshot)
-				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+			if (!g_shots.iHit == true)
+				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 20, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
 
 			if (g_shots.iHeadshot == true)
-				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
-				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 20, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 20, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+
+			if (g_shots.iHeadshot == true)
+				render::indicator.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 30, 180, 30, alpha }, "Headshot", render::ALIGN_CENTER);
 		}
 	}
 }
