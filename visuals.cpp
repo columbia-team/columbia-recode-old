@@ -426,7 +426,7 @@ void Visuals::StatusIndicators() {
 		indicators.push_back(ind);
 	}
 
-// MING DMG 
+	// MING DMG 
 	if (g_menu.main.visuals.indicators.get(3)) {
 		Indicator_t ind{ };
 		ind.color = g_aimbot.m_damage_toggle ? 0xff15c27b : 0xff0000ff;
