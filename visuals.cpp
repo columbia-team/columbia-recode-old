@@ -442,7 +442,7 @@ void Visuals::StatusIndicators() {
 	for (size_t i{ }; i < indicators.size(); ++i) {
 		auto& indicator = indicators[i];
 
-		render::indicator.string((g_cl.m_width / 5), (g_cl.m_height / 5) + 10 - (10 * i), indicator.color, indicator.text);
+		render::indicator.string(15, g_cl.m_height - 80 - (30 * i), indicator.color, indicator.text);
 	}
 
 	auto local_player = g_cl.m_local;
@@ -1388,9 +1388,9 @@ void Visuals::DrawPlayer(Player* player) {
 
 						std::string icon = tfm::format(XOR("%c"), m_weapon_icons[weapon->m_iItemDefinitionIndex()]);
 						if (dormant)
-							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 8, { 130,130,130, low_alpha }, icon, render::ALIGN_CENTER);
+							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 15, { 130,130,130, low_alpha }, icon, render::ALIGN_CENTER);
 						else
-							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 8, { 255, 255, 255, low_alpha }, icon, render::ALIGN_CENTER);
+							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 15, { 255, 255, 255, low_alpha }, icon, render::ALIGN_CENTER);
 					}
 				}
 			}
