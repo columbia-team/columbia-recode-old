@@ -1393,9 +1393,9 @@ void Visuals::DrawPlayer(Player* player) {
 
 						std::string icon = tfm::format(XOR("%c"), m_weapon_icons[weapon->m_iItemDefinitionIndex()]);
 						if (dormant)
-							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 2, { 130,130,130, low_alpha }, icon, render::ALIGN_CENTER);
+							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 8, { 130,130,130, low_alpha }, icon, render::ALIGN_CENTER);
 						else
-							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 2, { 255, 255, 255, low_alpha }, icon, render::ALIGN_CENTER);
+							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 8, { 255, 255, 255, low_alpha }, icon, render::ALIGN_CENTER);
 					}
 				}
 			}
