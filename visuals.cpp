@@ -426,21 +426,16 @@ void Visuals::StatusIndicators() {
 		indicators.push_back(ind);
 	}
 
-// niggertap
+// MING DMG 
 	if (g_menu.main.visuals.indicators.get(3)) {
 		Indicator_t ind{ };
-		ind.color = g_aimbot.m_double_tap && g_aimbot.CanDT() ? 0xff15c27b : 0xff0000ff;
-		ind.text = XOR("NT");
+		ind.color = g_aimbot.m_damage_toggle ? 0xff15c27b : 0xff0000ff;
+		ind.text = XOR("DMG");
 
 		indicators.push_back(ind);
 	}
 	if (indicators.empty())
 		return;
-
-// MING DMG 
-	if (g_menu.main.visuals.indicators.get(4)) {
-		Indicator_t ind[];
-	}
 
 
 	// iterate and draw indicators.
