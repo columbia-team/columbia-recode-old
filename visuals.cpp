@@ -442,7 +442,7 @@ void Visuals::StatusIndicators() {
 	for (size_t i{ }; i < indicators.size(); ++i) {
 		auto& indicator = indicators[i];
 
-		render::indicator.string((g_cl.m_width / 2), (g_cl.m_height / 2) + 10 - (10 * i), indicator.color, indicator.text);
+		render::indicator.string((g_cl.m_width / 5), (g_cl.m_height / 5) + 10 - (10 * i), indicator.color, indicator.text);
 	}
 
 	auto local_player = g_cl.m_local;
