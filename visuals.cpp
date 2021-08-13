@@ -268,12 +268,15 @@ void Visuals::Hitmarker() {
 			box.y = g_shots.iPlayerbottom.y - box.h;
 
 			// text damage
-			if (!g_shots.iHeadshot)
-				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+			if (!g_shots.iHit == true)
+				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 20, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
 
 			if (g_shots.iHeadshot == true)
-				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
-				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 20, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 20, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+
+			if (g_shots.iHeadshot == true)
+				render::indicator.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 30, 180, 30, alpha }, "Headshot", render::ALIGN_CENTER);
 		}
 	}
 }
@@ -426,7 +429,7 @@ void Visuals::StatusIndicators() {
 		indicators.push_back(ind);
 	}
 
-// MING DMG 
+	// MING DMG 
 	if (g_menu.main.visuals.indicators.get(3)) {
 		Indicator_t ind{ };
 		ind.color = g_aimbot.m_damage_toggle ? 0xff15c27b : 0xff0000ff;
@@ -442,7 +445,7 @@ void Visuals::StatusIndicators() {
 	for (size_t i{ }; i < indicators.size(); ++i) {
 		auto& indicator = indicators[i];
 
-		render::indicator.string((g_cl.m_width / 5), (g_cl.m_height / 5) + 10 - (10 * i), indicator.color, indicator.text);
+		render::indicator.string(15, g_cl.m_height - 80 - (30 * i), indicator.color, indicator.text);
 	}
 
 	auto local_player = g_cl.m_local;
@@ -1388,9 +1391,9 @@ void Visuals::DrawPlayer(Player* player) {
 
 						std::string icon = tfm::format(XOR("%c"), m_weapon_icons[weapon->m_iItemDefinitionIndex()]);
 						if (dormant)
-							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 8, { 130,130,130, low_alpha }, icon, render::ALIGN_CENTER);
+							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 15, { 130,130,130, low_alpha }, icon, render::ALIGN_CENTER);
 						else
-							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 8, { 255, 255, 255, low_alpha }, icon, render::ALIGN_CENTER);
+							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 15, { 255, 255, 255, low_alpha }, icon, render::ALIGN_CENTER);
 					}
 				}
 			}
