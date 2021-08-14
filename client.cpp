@@ -18,8 +18,6 @@ void Client::DrawHUD() {
 	if (!g_menu.main.misc.watermark.get())
 		return;
 
-	if (!g_csgo.m_engine->IsInGame())
-		return;
 
 	// get round trip time in milliseconds.
 	int ms = std::max(0, (int)std::round(g_cl.m_latency * 1000.f));
@@ -28,12 +26,12 @@ void Client::DrawHUD() {
 	int rate = (int)std::round(1.f / g_csgo.m_globals->m_interval);
 	Color color = g_gui.m_color;
 
-	std::string text = tfm::format(XOR("DEBUG <%n> | ping: %i"), g_cl.m_user, ms);
+	std::string text = tfm::format(XOR("columbia <%n> | ping: %i"), g_cl.m_user, ms);
 	render::FontSize_t size = render::menu.size(text);
 
 	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { 30, 30, 30, 255 });
-	render::gradient(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { 0, 165, 255, 120 }, { 0, 165, 255, 0 } );
-	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, 1, { 0, 165, 255, 255 });
+	render::gradient(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { g_gui.m_color }, { g_gui.m_color });
+	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, 1, { g_gui.m_color });
 
 	render::hud.string(m_width - 15, 11, { 255, 255, 255, 250 }, text, render::ALIGN_RIGHT);
 }

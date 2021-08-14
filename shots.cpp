@@ -296,7 +296,7 @@ void Shots::OnHurt(IGameEvent* evt) {
 		iPlayermins = { iPlayerOrigin.x, iPlayerOrigin.y, iPlayermins.z };
 		iPlayermaxs = { iPlayerOrigin.x, iPlayerOrigin.y, iPlayermaxs.z + 8.f };
 
-		g_csgo.m_sound->EmitAmbientSound(XOR("buttons/pp.wav"), 1.f);
+		g_csgo.m_sound->EmitAmbientSound(XOR("buttons\\arena_switch_press_02.wav"), 1.f);
 	}
 
 	// print this shit.

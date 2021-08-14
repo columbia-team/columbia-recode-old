@@ -172,7 +172,7 @@ public:
 
 		override.setup(XOR("resolver override on key"), XOR("override"));
 		RegisterElement(&override, 1);
-		Niggertap.setup(XOR("nigger tap"), XOR("doubletap"));
+		Niggertap.setup(XOR("double tap"), XOR("doubletap"));
 		Niggertap.SetToggleCallback(callbacks::ToggleDT);
 		RegisterElement(&Niggertap, 1);
 
@@ -906,6 +906,8 @@ public:
 	Checkbox bhop;
 	Checkbox airduck;
 	Checkbox autostrafe;
+	Checkbox quickstop;
+
 	Keybind  cstrafe;
 	Keybind  astrafe;
 	Keybind  zstrafe;
@@ -954,6 +956,9 @@ public:
 
 		autostop_always_on.setup(XOR("automatic stop always on"), XOR("auto_stop_always"));
 		RegisterElement(&autostop_always_on, 1);
+
+		quickstop.setup(XOR("fast stop"), XOR("quickstop"));
+		RegisterElement(&quickstop);
 
 		autostop.setup(XOR("automatic stop"), XOR("autostop"));
 		autostop.AddShowCallback(callbacks::AUTO_STOP);
@@ -2331,7 +2336,7 @@ public:
 public:
 	void init() {
 		SetPosition(50, 50);
-		SetSize(630, 500);
+		SetSize(630, 530);
 
 		// aim.
 		RegisterTab(&aimbot);
