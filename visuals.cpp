@@ -277,6 +277,7 @@ void Visuals::Hitmarker() {
 
 			if (g_shots.iHeadshot == true)
 					render::indicator.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 30, 180, 30, alpha }, "Headshot", render::ALIGN_CENTER);
+
 		}
 	}
 }
@@ -429,12 +430,20 @@ void Visuals::StatusIndicators() {
 		indicators.push_back(ind);
 	}
 
+
 // doubletap
 	if (g_menu.main.visuals.indicators.get(3)) {
 		Indicator_t ind{ };
 		ind.color = g_aimbot.m_double_tap && g_aimbot.CanDT() ? 0xff15c27b : 0xff0000ff;
 		ind.text = XOR("DT");
-
+    indicators.push_back(ind);
+  }
+  
+	// MING DMG 
+	if (g_menu.main.visuals.indicators.get(3)) {
+		Indicator_t ind{ };
+		ind.color = g_aimbot.m_damage_toggle ? 0xff15c27b : 0xff0000ff;
+		ind.text = XOR("DMG");
 		indicators.push_back(ind);
 	}
 	if (indicators.empty())
@@ -1387,7 +1396,7 @@ void Visuals::DrawPlayer(Player* player) {
 					}
 
 					// icons.
-					if (g_menu.main.players.weapon_mode.get(1)) {
+				if (g_menu.main.players.weapon_mode.get(1)) {
 						offset -= 5;
 						// icons are super fat..
 						// move them back up.
