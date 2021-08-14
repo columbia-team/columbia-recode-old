@@ -452,7 +452,7 @@ public:
 		RegisterElement(&body_fake_air);
 
 		// col2.
-		fake_yaw.setup(XOR("fake yaw"), XOR("fake_yaw"), { XOR("off"), XOR("default"), XOR("relative"), XOR("jitter"), XOR("rotate"), XOR("random"), XOR("local view"), XOR("baconator")});
+		fake_yaw.setup(XOR("fake yaw"), XOR("fake_yaw"), { XOR("off"), XOR("default"), XOR("relative"), XOR("jitter"), XOR("rotate"), XOR("slowspin"), XOR("random"), XOR("local view"), XOR("baconator")});
 		RegisterElement(&fake_yaw, 1);
 
 		fake_relative.setup("", XOR("fake_relative"), -90.f, 90.f, false, 0, 0.f, 5.f, XOR(L"°"));

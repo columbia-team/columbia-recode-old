@@ -30,7 +30,13 @@ void Client::DrawHUD() {
 	render::FontSize_t size = render::menu.size(text);
 
 	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { 30, 30, 30, 255 });
+<<<<<<< Updated upstream
 	render::gradient(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { g_gui.m_color }, { g_gui.m_color } );
+=======
+
+	render::gradient(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { g_gui.m_color }, { g_gui.m_color });
+
+>>>>>>> Stashed changes
 	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, 1, { g_gui.m_color });
 
 	render::hud.string(m_width - 15, 11, { 255, 255, 255, 250 }, text, render::ALIGN_RIGHT);
