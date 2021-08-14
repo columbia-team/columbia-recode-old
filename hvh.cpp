@@ -665,8 +665,6 @@ void HVH::DoFakeAntiAim() {
 		g_cl.m_cmd->m_view_angles.y = m_direction + 90.f + std::fmod(g_csgo.m_globals->m_curtime * 360.f, 180.f);
 		break;
 
-		// slowspin.
-		
 	case 5:
 		g_cl.m_cmd->m_view_angles.y = m_direction + 90.f + std::fmod(g_csgo.m_globals->m_curtime * 250.f, 360.f);
 		break;
@@ -682,7 +680,7 @@ void HVH::DoFakeAntiAim() {
 		break;
 
 		// baconator.
-	case 8:
+	case 7:
 		// set base to opposite of direction.
 		g_cl.m_cmd->m_view_angles.y = m_direction + 90.f + std::fmod(g_csgo.m_globals->m_curtime * 1.f, 180.f);
 

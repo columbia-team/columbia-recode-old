@@ -31,11 +31,9 @@ void Client::DrawHUD() {
 
 	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { 30, 30, 30, 255 });
 
-	render::gradient(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { g_gui.m_color }, { g_gui.m_color } );
+	render::gradient(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { g_gui.m_color }, { 30, 30, 30, 255 });
 
-	render::gradient(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { g_gui.m_color }, { g_gui.m_color });
-
-	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, 1, { g_gui.m_color });
+	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, 1, { 30, 30, 30, 255 });
 
 	render::hud.string(m_width - 15, 11, { 255, 255, 255, 250 }, text, render::ALIGN_RIGHT);
 }
@@ -72,25 +70,31 @@ void Client::ClanTag()
 		// are we in a new frame?
 		if (iPrevFrame != int(g_csgo.m_globals->m_curtime * 2.4) % 27) {
 			switch (int(g_csgo.m_globals->m_curtime * 2.4) % 27) {
-			case 0:  {   SetClanTag(""); break; }
-			case 1:  {   SetClanTag("c"); break; }
-			case 2:  {   SetClanTag("co"); break; }
-			case 3:  {   SetClanTag("col"); break; }
-			case 4:  {   SetClanTag("colu"); break; }
-			case 5:  {   SetClanTag("colum"); break; }
-			case 6:  {   SetClanTag("columb"); break; }
-			case 7:  {   SetClanTag("columbia"); break; }
-			case 8:  {   SetClanTag("columbia"); break; }
-			case 9:  {   SetClanTag("columbia"); break; }
-			case 10: {	 SetClanTag("columbia"); break; }
-			case 11: {	 SetClanTag("olumbia"); break; }
-			case 12: {   SetClanTag("lumbia"); break; }
-			case 13: {   SetClanTag("umbia"); break; }
-			case 14: {   SetClanTag("mbia"); break; }
-			case 15: {   SetClanTag("bia"); break; }
-			case 16: {   SetClanTag("ia"); break; }
-			case 17: {   SetClanTag("a"); break; }
-			case 18: {	 SetClanTag(""); break; }
+			case 0: {   SetClanTag("                  "); break; }
+			case 1: {   SetClanTag("                 c"); break; }
+			case 2: {   SetClanTag("                co"); break; }
+			case 3: {   SetClanTag("               col"); break; }
+			case 4: {   SetClanTag("              colu"); break; }
+			case 5: {   SetClanTag("             colum"); break; }
+			case 6: {   SetClanTag("            columb"); break; }
+			case 7: {   SetClanTag("           columbia"); break; }
+			case 8: {   SetClanTag("          columbia "); break; }
+			case 9: {   SetClanTag("         columbia  "); break; }
+			case 10: {  SetClanTag("        columbia   "); break; }
+			case 11: {  SetClanTag("       columbia    "); break; }
+			case 12: {  SetClanTag("      columbia     "); break; }
+			case 13: {  SetClanTag("     columbia      "); break; }
+			case 14: {  SetClanTag("    columbia       "); break; }
+			case 15: {  SetClanTag("   columbia        "); break; }
+			case 16: {  SetClanTag("  columbia         "); break; }
+			case 17: {  SetClanTag(" columbia          "); break; }
+			case 18: {  SetClanTag("olumbia            "); break; }
+			case 19: {  SetClanTag("lumbia             "); break; }
+			case 20: {  SetClanTag("umbia              "); break; }
+			case 22: {  SetClanTag("mbia               "); break; }
+			case 23: {  SetClanTag("bia                "); break; }
+			case 24: {  SetClanTag("ia                 "); break; }
+			case 25: {  SetClanTag("a                   "); break; }
 			default:;
 			}
 		}
@@ -200,17 +204,17 @@ void Client::Skybox()
 	float destiny = g_menu.main.visuals.Fogdensity.get() / 100.f;
 
 	static const auto fog_enable = g_csgo.m_cvar->FindVar(HASH("fog_enable"));
-	fog_enable->SetValue(1); //Âêëþ÷àåò òóìàí íà êàðòå åñëè îí âûêëþ÷åí ïî äåôîëòó
+	fog_enable->SetValue(1); //Ã‚ÃªÃ«Ã¾Ã·Ã Ã¥Ã² Ã²Ã³Ã¬Ã Ã­ Ã­Ã  ÃªÃ Ã°Ã²Ã¥ Ã¥Ã±Ã«Ã¨ Ã®Ã­ Ã¢Ã»ÃªÃ«Ã¾Ã·Ã¥Ã­ Ã¯Ã® Ã¤Ã¥Ã´Ã®Ã«Ã²Ã³
 	static const auto fog_override = g_csgo.m_cvar->FindVar(HASH("fog_override"));
-	fog_override->SetValue(g_menu.main.visuals.FogOverride.get()); // Ðàçðåøàåò êàñòîìèçàöèþ òóìàíà
+	fog_override->SetValue(g_menu.main.visuals.FogOverride.get()); // ÃÃ Ã§Ã°Ã¥Ã¸Ã Ã¥Ã² ÃªÃ Ã±Ã²Ã®Ã¬Ã¨Ã§Ã Ã¶Ã¨Ã¾ Ã²Ã³Ã¬Ã Ã­Ã 
 	static const auto fog_color = g_csgo.m_cvar->FindVar(HASH("fog_color"));
-	fog_color->SetValue(std::string(std::to_string(g_menu.main.visuals.FogColor.get().r()) + " " + std::to_string(g_menu.main.visuals.FogColor.get().g()) + " " + std::to_string(g_menu.main.visuals.FogColor.get().b())).c_str()); //Öâåò òóìàíà rgb
+	fog_color->SetValue(std::string(std::to_string(g_menu.main.visuals.FogColor.get().r()) + " " + std::to_string(g_menu.main.visuals.FogColor.get().g()) + " " + std::to_string(g_menu.main.visuals.FogColor.get().b())).c_str()); //Ã–Ã¢Ã¥Ã² Ã²Ã³Ã¬Ã Ã­Ã  rgb
 	static const auto fog_start = g_csgo.m_cvar->FindVar(HASH("fog_start"));
-	fog_start->SetValue(g_menu.main.visuals.FogStart.get()); // Äèñòàíöèÿ ñ êîòîðîé òóìàí ïîÿâëÿåòñÿ
+	fog_start->SetValue(g_menu.main.visuals.FogStart.get()); // Ã„Ã¨Ã±Ã²Ã Ã­Ã¶Ã¨Ã¿ Ã± ÃªÃ®Ã²Ã®Ã°Ã®Ã© Ã²Ã³Ã¬Ã Ã­ Ã¯Ã®Ã¿Ã¢Ã«Ã¿Ã¥Ã²Ã±Ã¿
 	static const auto fog_end = g_csgo.m_cvar->FindVar(HASH("fog_end"));
-	fog_end->SetValue(g_menu.main.visuals.FogEnd.get()); // Äèñòàíöèÿ ñ êîòîðîé òóìàí ïðîïàäàåò
+	fog_end->SetValue(g_menu.main.visuals.FogEnd.get()); // Ã„Ã¨Ã±Ã²Ã Ã­Ã¶Ã¨Ã¿ Ã± ÃªÃ®Ã²Ã®Ã°Ã®Ã© Ã²Ã³Ã¬Ã Ã­ Ã¯Ã°Ã®Ã¯Ã Ã¤Ã Ã¥Ã²
 	static const auto fog_destiny = g_csgo.m_cvar->FindVar(HASH("fog_maxdensity"));
-	fog_destiny->SetValue(destiny); //Ìàêñèìàëüíàÿ íàñûùåííîñòü òóìàíà(0-1)
+	fog_destiny->SetValue(destiny); //ÃŒÃ ÃªÃ±Ã¨Ã¬Ã Ã«Ã¼Ã­Ã Ã¿ Ã­Ã Ã±Ã»Ã¹Ã¥Ã­Ã­Ã®Ã±Ã²Ã¼ Ã²Ã³Ã¬Ã Ã­Ã (0-1)
 }
 
 void Client::KillFeed() {

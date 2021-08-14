@@ -172,7 +172,7 @@ public:
 
 		override.setup(XOR("resolver override on key"), XOR("override"));
 		RegisterElement(&override, 1);
-		Niggertap.setup(XOR("nigger tap"), XOR("doubletap"));
+		Niggertap.setup(XOR("double tap"), XOR("doubletap"));
 		Niggertap.SetToggleCallback(callbacks::ToggleDT);
 		RegisterElement(&Niggertap, 1);
 
@@ -264,7 +264,7 @@ public:
 		pitch_stand.AddShowCallback(callbacks::IsAntiAimModeStand);
 		RegisterElement(&pitch_stand);
 
-		yaw_stand.setup(XOR("yaw"), XOR("yaw_stnd"), { XOR("off"), XOR("direction"), XOR("jitter"), XOR("rotate"), XOR("random") });
+		yaw_stand.setup(XOR("yaw"), XOR("yaw_stnd"), { XOR("off"), XOR("direction"), XOR("jitter"), XOR("rotate"), XOR("slowspin"), XOR("random")});
 		yaw_stand.AddShowCallback(callbacks::IsAntiAimModeStand);
 		RegisterElement(&yaw_stand);
 
@@ -452,7 +452,7 @@ public:
 		RegisterElement(&body_fake_air);
 
 		// col2.
-		fake_yaw.setup(XOR("fake yaw"), XOR("fake_yaw"), { XOR("off"), XOR("default"), XOR("relative"), XOR("jitter"), XOR("rotate"), XOR("slowspin"), XOR("random"), XOR("local view"), XOR("baconator")});
+		fake_yaw.setup(XOR("fake yaw"), XOR("fake_yaw"), { XOR("off"), XOR("default"), XOR("relative"), XOR("jitter"), XOR("rotate"), XOR("random"), XOR("local view"), XOR("baconator")});
 		RegisterElement(&fake_yaw, 1);
 
 		fake_relative.setup("", XOR("fake_relative"), -90.f, 90.f, false, 0, 0.f, 5.f, XOR(L"°"));
@@ -906,6 +906,8 @@ public:
 	Checkbox bhop;
 	Checkbox airduck;
 	Checkbox autostrafe;
+	Checkbox quickstop;
+
 	Keybind  cstrafe;
 	Keybind  astrafe;
 	Keybind  zstrafe;
@@ -954,6 +956,9 @@ public:
 
 		autostop_always_on.setup(XOR("automatic stop always on"), XOR("auto_stop_always"));
 		RegisterElement(&autostop_always_on, 1);
+
+		quickstop.setup(XOR("fast stop"), XOR("quickstop"));
+		RegisterElement(&quickstop);
 
 		autostop.setup(XOR("automatic stop"), XOR("autostop"));
 		autostop.AddShowCallback(callbacks::AUTO_STOP);
@@ -2330,8 +2335,8 @@ public:
 
 public:
 	void init() {
-		SetPosition(150, 150);
-		SetSize(630, 500);
+		SetPosition(50, 50);
+		SetSize(630, 530);
 
 		// aim.
 		RegisterTab(&aimbot);
