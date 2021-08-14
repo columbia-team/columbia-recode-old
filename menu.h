@@ -2330,7 +2330,7 @@ public:
 
 public:
 	void init() {
-		SetPosition(50, 50);
+		SetPosition(150, 150);
 		SetSize(630, 500);
 
 		// aim.
