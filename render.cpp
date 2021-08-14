@@ -24,8 +24,8 @@ void render::init() {
 	cs = Font(XOR("Counter-Strike"), 28, FW_MEDIUM, FONTFLAG_ANTIALIAS | FONTFLAG_DROPSHADOW);
 	logevent = Font(XOR("Verdana"), 12, FW_DONTCARE, FONTFLAG_DROPSHADOW);
 	indicator = Font(XOR("Verdana"), 25, FW_EXTRABOLD, FONTFLAG_OUTLINE);
-	damage = Font(XOR("Verdana"), 15, FW_NORMAL, FONTFLAG_ANTIALIAS | FONTFLAG_DROPSHADOW);
-	spectators = Font(XOR("Verdana"), 15, FW_NORMAL, FONTFLAG_DROPSHADOW);
+	damage = Font(XOR("Tahoma"), 15, FW_NORMAL, FONTFLAG_ANTIALIAS | FONTFLAG_DROPSHADOW);
+	spectators = Font(XOR("Tahoma"), 15, FW_NORMAL, FONTFLAG_DROPSHADOW);
 }
 
 void render::gradient1337(int x, int y, int w, int h, Color color1, Color color2) {
