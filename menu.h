@@ -41,7 +41,7 @@ public:
 	Keybind       override_dmg_key;
 	Slider        override_dmg_value;
 	Keybind       override;
-	Keybind		  Niggertap;
+	Keybind		  doubletap;
 	
 
 public:
@@ -172,9 +172,9 @@ public:
 
 		override.setup(XOR("resolver override on key"), XOR("override"));
 		RegisterElement(&override, 1);
-		Niggertap.setup(XOR("double tap"), XOR("doubletap"));
-		Niggertap.SetToggleCallback(callbacks::ToggleDT);
-		RegisterElement(&Niggertap, 1);
+		doubletap.setup(XOR("double tap"), XOR("doubletap"));
+		doubletap.SetToggleCallback(callbacks::ToggleDT);
+		RegisterElement(&doubletap, 1);
 
 	}
 };
@@ -260,7 +260,7 @@ public:
 		RegisterElement(&mode);
 
 		// stand.
-		pitch_stand.setup(XOR("pitch"), XOR("pitch_stnd"), { XOR("off"), XOR("down"), XOR("up"), XOR("random"), XOR("ideal") });
+		pitch_stand.setup(XOR("pitch"), XOR("pitch_stnd"), { XOR("off"), XOR("down"), XOR("up"), XOR("random"), XOR("ideal"), XOR("lag down"), XOR("lag up")});
 		pitch_stand.AddShowCallback(callbacks::IsAntiAimModeStand);
 		RegisterElement(&pitch_stand);
 
@@ -345,7 +345,7 @@ public:
 
 
 		// walk.
-		pitch_walk.setup(XOR("pitch"), XOR("pitch_walk"), { XOR("off"), XOR("down"), XOR("up"), XOR("random"), XOR("ideal") });
+		pitch_walk.setup(XOR("pitch"), XOR("pitch_walk"), { XOR("off"), XOR("down"), XOR("up"), XOR("random"), XOR("ideal"), XOR("lag down"), XOR("lag up") });
 		pitch_walk.AddShowCallback(callbacks::IsAntiAimModeWalk);
 		RegisterElement(&pitch_walk);
 
@@ -396,7 +396,7 @@ public:
 		RegisterElement(&base_angle_walk);
 
 		// air.
-		pitch_air.setup(XOR("pitch"), XOR("pitch_air"), { XOR("off"), XOR("down"), XOR("up"), XOR("random"), XOR("ideal") });
+		pitch_air.setup(XOR("pitch"), XOR("pitch_air"), { XOR("off"), XOR("down"), XOR("up"), XOR("random"), XOR("ideal"), XOR("lag down"), XOR("lag up") });
 		pitch_air.AddShowCallback(callbacks::IsAntiAimModeAir);
 		RegisterElement(&pitch_air);
 
@@ -452,7 +452,7 @@ public:
 		RegisterElement(&body_fake_air);
 
 		// col2.
-		fake_yaw.setup(XOR("fake yaw"), XOR("fake_yaw"), { XOR("off"), XOR("default"), XOR("relative"), XOR("jitter"), XOR("rotate"), XOR("random"), XOR("local view"), XOR("baconator")});
+		fake_yaw.setup(XOR("fake yaw"), XOR("fake_yaw"), { XOR("off"), XOR("default"), XOR("relative"), XOR("jitter"), XOR("rotate"), XOR("slowspin"), XOR("random"), XOR("local view"), XOR("baconator")});
 		RegisterElement(&fake_yaw, 1);
 
 		fake_relative.setup("", XOR("fake_relative"), -90.f, 90.f, false, 0, 0.f, 5.f, XOR(L"°"));
@@ -467,7 +467,7 @@ public:
 		lag_enable.setup(XOR("fake-lag"), XOR("lag_enable"));
 		RegisterElement(&lag_enable, 1);
 
-		lag_active.setup("", XOR("lag_active"), { XOR("move"), XOR("air"), XOR("crouch") }, false);
+		lag_active.setup("", XOR("lag_active"), { XOR("always"), XOR("move"), XOR("air"), XOR("crouch")}, false);
 		RegisterElement(&lag_active, 1);
 
 		lag_mode.setup("", XOR("lag_mode"), { XOR("max"), XOR("break"), XOR("random"), XOR("break step") }, false);
@@ -874,7 +874,7 @@ public:
 		pen_damage.setup(XOR("penetration crosshair damage"), XOR("pen_damage"));
 		RegisterElement(&pen_damage, 1);
 
-		indicators.setup(XOR("indicators"), XOR("indicators"), { XOR("lby"), XOR("lag compensation"), XOR("ping"), XOR("min dmg"), XOR("nigger-tap")});
+		indicators.setup(XOR("indicators"), XOR("indicators"), { XOR("lby"), XOR("lag compensation"), XOR("ping"), XOR("min dmg"), XOR("double tap")});
 		RegisterElement(&indicators, 1);
 
 		tracers.setup(XOR("grenade simulation"), XOR("tracers"));

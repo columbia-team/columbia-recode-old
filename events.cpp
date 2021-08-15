@@ -86,7 +86,7 @@ void events::player_hurt(IGameEvent* evt) {
 	g_shots.OnHurt(evt);
 
 	// offscreen esp damage stuff.
-	if (evt) {
+	if (evt && g_menu.main.misc.notifications.get(2)) {
 		Player* attacker = g_csgo.m_entlist->GetClientEntity<Player*>(g_csgo.m_engine->GetPlayerForUserID(evt->m_keys->FindKey(HASH("attacker"))->GetInt()));
 		Player* victim = g_csgo.m_entlist->GetClientEntity<Player*>(g_csgo.m_engine->GetPlayerForUserID(evt->m_keys->FindKey(HASH("userid"))->GetInt()));
 
@@ -158,7 +158,7 @@ void events::item_purchase(IGameEvent* evt) {
 	if (!g_cl.m_local || !evt)
 		return;
 
-	if (!g_menu.main.misc.notifications.get(2))
+	if (!g_menu.main.misc.notifications.get(3))
 		return;
 
 	// only log purchases of the enemy team.

@@ -68,7 +68,7 @@ void Form::draw( ) {
 
             std::string date = XOR( __DATE__ );
 
-			std::string text = tfm::format( XOR( "%s | %s" ), date.c_str( ), g_cl.m_user );
+			std::string text = tfm::format( XOR( "build date: %s" ), date.c_str( ), g_cl.m_user );
 			render::menu_shade.string( el.x + el.w - 5, el.y + el.h - 16, { 205, 205, 205, m_alpha }, text, render::ALIGN_RIGHT );
 
 			// iterate elements to display.

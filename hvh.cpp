@@ -34,6 +34,16 @@ void HVH::AntiAimPitch() {
 		IdealPitch();
 		break;
 
+	case 5:
+		//lag down
+		g_cl.m_cmd->m_view_angles.x = safe ? 179.f : 181.f;
+		break;
+
+	case 6:
+		//lag up
+		g_cl.m_cmd->m_view_angles.x = safe ? -179.f : -181.f;
+		break;
+
 	default:
 		break;
 	}
@@ -664,19 +674,24 @@ void HVH::DoFakeAntiAim() {
 	case 4:
 		g_cl.m_cmd->m_view_angles.y = m_direction + 90.f + std::fmod(g_csgo.m_globals->m_curtime * 360.f, 180.f);
 		break;
+		
+		// slowspin.
+	case 5:
+		g_cl.m_cmd->m_view_angles.y = m_direction + 90.f + std::fmod(g_csgo.m_globals->m_curtime * 200.f, 360.f);
+		break;
 
 		// random.
-	case 5:
+	case 6:
 		g_cl.m_cmd->m_view_angles.y = g_csgo.RandomFloat(-180.f, 180.f);
 		break;
 
 		// local view.
-	case 6:
+	case 7:
 		g_cl.m_cmd->m_view_angles.y = g_cl.m_view_angles.y;
 		break;
 
 		// baconator.
-	case 7:
+	case 8:
 		// set base to opposite of direction.
 		g_cl.m_cmd->m_view_angles.y = m_direction + 90.f + std::fmod(g_csgo.m_globals->m_curtime * 1.f, 180.f);
 
@@ -806,7 +821,7 @@ void HVH::SendPacket() {
 	if (!*g_cl.m_final_packet)
 		*g_cl.m_packet = false;
 
-	if (g_aimbot.CanDT() && g_menu.main.aimbot.Niggertap.get()) {
+	if (g_aimbot.CanDT() && g_menu.main.aimbot.doubletap.get()) {
 		*g_cl.m_packet = g_csgo.m_cl->m_choked_commands >= 1;
 	}
 	else 
@@ -831,6 +846,11 @@ void HVH::SendPacket() {
 		auto activation = g_menu.main.antiaim.lag_active.GetActiveIndices();
 		for (auto it = activation.begin(); it != activation.end(); it++) {
 
+			//always
+			if (*it == 0) {
+				active = true;
+				break;
+			}
 			// move.
 			if (*it == 0 && delta > 0.1f && g_cl.m_speed > 0.1f) {
 				active = true;

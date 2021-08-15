@@ -26,14 +26,14 @@ void Client::DrawHUD() {
 	int rate = (int)std::round(1.f / g_csgo.m_globals->m_interval);
 	Color color = g_gui.m_color;
 
-	std::string text = tfm::format(XOR("columbia <%n> | ping: %i"), g_cl.m_user, ms);
+	std::string text = tfm::format(XOR("columbia <%n> | ping: %i |"), g_cl.m_user, ms);
 	render::FontSize_t size = render::menu.size(text);
 
 	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { 30, 30, 30, 255 });
 
-	render::gradient(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { g_gui.m_color }, { g_gui.m_color });
+	render::gradient(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { g_gui.m_color }, { 30, 30, 30, 255 });
 
-	render::ect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, 1, { g_gui.m_color });
+	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, 1, { g_gui.m_color });
 
 	render::hud.string(m_width - 15, 11, { 255, 255, 255, 250 }, text, render::ALIGN_RIGHT);
 }
@@ -94,7 +94,8 @@ void Client::ClanTag()
 			case 22: {  SetClanTag("mbia               "); break; }
 			case 23: {  SetClanTag("bia                "); break; }
 			case 24: {  SetClanTag("ia                 "); break; }
-			case 25: {  SetClanTag("a                   "); break; }
+			case 25: {  SetClanTag("a                  "); break; }
+			case 26: {  SetClanTag("                   "); break; }
 			default:;
 			}
 		}

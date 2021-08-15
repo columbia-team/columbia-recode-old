@@ -431,8 +431,8 @@ void Visuals::StatusIndicators() {
 	}
 
 
-// doubletap
-	if (g_menu.main.visuals.indicators.get(3)) {
+	// DOUBLETAP
+	if (g_menu.main.visuals.indicators.get(4)) {
 		Indicator_t ind{ };
 		ind.color = g_aimbot.m_double_tap && g_aimbot.CanDT() ? 0xff15c27b : 0xff0000ff;
 		ind.text = XOR("DT");
