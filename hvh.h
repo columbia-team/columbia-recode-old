@@ -48,6 +48,7 @@ public:
 	float  m_auto_dist;
 	float  m_auto_last;
 	float  m_view;
+	float  wish_body;
 
 	bool   m_left, m_right, m_back;
 
@@ -57,6 +58,7 @@ public:
 	void AutoDirection();
 	void GetAntiAimDirection();
 	bool DoEdgeAntiAim(Player* player, ang_t& out);
+	bool SafeDirection();
 	void DoRealAntiAim();
 	void DoFakeAntiAim();
 	void AntiAim();

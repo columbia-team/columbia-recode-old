@@ -229,6 +229,7 @@ public:
 	Dropdown fake_yaw;
 	Slider	 fake_relative;
 	Slider	 fake_jitter_range;
+	Checkbox safe_break;
 
 	Checkbox      lag_enable;
 	MultiDropdown lag_active;
@@ -242,6 +243,7 @@ public:
 	Checkbox	  draw_angles_chams;
 	Colorpicker   color_draw_angles_chams;
 	Slider        draw_angles_chams_blend;
+	Keybind		  fake_flick;
 	Keybind		  left;
 	Keybind		  right;
 	Keybind		  backward;
@@ -478,6 +480,12 @@ public:
 
 		lag_land.setup(XOR("on land"), XOR("lag_land"));
 		RegisterElement(&lag_land, 1);
+
+		fake_flick.setup(XOR("fake flick"), XOR("fake_flick"));
+		RegisterElement(&fake_flick, 1);
+
+		safe_break.setup(XOR("safe break"), XOR("safe_break"));
+		RegisterElement(&safe_break, 1);
 
 		manul_antiaim.setup(XOR("show manual anit-aim"), XOR("manul_antiaim"));
 		RegisterElement(&manul_antiaim, 1);

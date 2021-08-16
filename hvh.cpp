@@ -458,13 +458,136 @@ bool HVH::DoEdgeAntiAim(Player* player, ang_t& out) {
 	return false;
 }
 
+bool HVH::SafeDirection() {
+	// constants.
+	constexpr float STEP{ 4.f };
+	constexpr float RANGE{ 32.f };
+
+	// best target.
+	struct AutoTarget_t { float fov; Player* player; };
+	AutoTarget_t target{ 180.f + 1.f, nullptr };
+
+	// iterate players.
+	for (int i{ 1 }; i <= g_csgo.m_globals->m_max_clients; ++i) {
+		Player* player = g_csgo.m_entlist->GetClientEntity< Player* >(i);
+
+		// validate player.
+		if (!g_aimbot.IsValidTarget(player))
+			continue;
+
+		// skip dormant players.
+		if (player->dormant())
+			continue;
+
+		// get best target based on fov.
+		float fov = math::GetFOV(g_cl.m_view_angles, g_cl.m_shoot_pos, player->WorldSpaceCenter());
+
+		if (fov < target.fov) {
+			target.fov = fov;
+			target.player = player;
+		}
+	}
+
+	if (!target.player) {
+		return true;
+	}
+
+	/*
+	* data struct
+	* 68 74 74 70 73 3a 2f 2f 73 74 65 61 6d 63 6f 6d 6d 75 6e 69 74 79 2e 63 6f 6d 2f 69 64 2f 73 69 6d 70 6c 65 72 65 61 6c 69 73 74 69 63 2f
+	*/
+
+	// construct vector of angles to test.
+	std::vector< AdaptiveAngle > angles{ };
+	angles.emplace_back(m_view + wish_body);
+
+	// start the trace at the enemy shoot pos.
+	vec3_t start = target.player->GetShootPosition();
+
+	// see if we got any valid result.
+	// if this is false the path was not obstructed with anything.
+	bool valid{ false };
+
+	// iterate vector of angles.
+	for (auto it = angles.begin(); it != angles.end(); ++it) {
+
+		// compute the 'rough' estimation of where our head will be.
+		vec3_t end{ g_cl.m_shoot_pos.x + std::cos(math::deg_to_rad(it->m_yaw)) * RANGE,
+			g_cl.m_shoot_pos.y + std::sin(math::deg_to_rad(it->m_yaw)) * RANGE,
+			g_cl.m_shoot_pos.z };
+
+		// draw a line for debugging purposes.
+		//g_csgo.m_debug_overlay->AddLineOverlay( start, end, 255, 0, 0, true, 0.1f );
+
+		// compute the direction.
+		vec3_t dir = end - start;
+		float len = dir.normalize();
+
+		// should never happen.
+		if (len <= 0.f)
+			continue;
+
+		// step thru the total distance, 4 units per step.
+		for (float i{ 0.f }; i < len; i += STEP) {
+			// get the current step position.
+			vec3_t point = start + (dir * i);
+
+			// get the contents at this point.
+			int contents = g_csgo.m_engine_trace->GetPointContents(point, MASK_SHOT_HULL);
+
+			// contains nothing that can stop a bullet.
+			if (!(contents & MASK_SHOT_HULL))
+				continue;
+
+			float mult = 1.f;
+
+			// over 50% of the total length, prioritize this shit.
+			if (i > (len * 0.5f))
+				mult = 1.25f;
+
+			// over 75% of the total length, prioritize this shit.
+			if (i > (len * 0.75f))
+				mult = 1.25f;
+
+			// over 90% of the total length, prioritize this shit.
+			if (i > (len * 0.9f))
+				mult = 2.f;
+
+			// append 'penetrated distance'.
+			it->m_dist += (STEP * mult);
+
+			// mark that we found anything.
+			valid = true;
+		}
+	}
+
+	return valid;
+}
+
 void HVH::DoRealAntiAim() {
 	// if we have a yaw antaim.
+	static bool fucked = false;
 	if (m_yaw > 0) {
 
 		// if we have a yaw active, which is true if we arrived here.
 		// set the yaw to the direction before applying any other operations.
 		g_cl.m_cmd->m_view_angles.y = m_direction;
+
+		if (g_menu.main.antiaim.safe_break.get()) {
+			// uh oh
+			if (!SafeDirection())
+				fucked = true; // whatever we do DONT FUCKING FLICK
+			else
+				fucked = false;
+		}
+		else
+			fucked = false;
+
+		if (g_input.GetKeyState(g_menu.main.antiaim.fake_flick.get())) {
+			g_cl.m_body = 90.f;
+			if (!g_cl.m_lag && g_csgo.m_globals->m_curtime >= g_cl.m_body_pred)
+				return;
+		}
 
 		bool stand = g_menu.main.antiaim.body_fake_stand.get() > 0 && m_mode == AntiAimMode::STAND;
 		bool air = g_menu.main.antiaim.body_fake_air.get() > 0 && m_mode == AntiAimMode::AIR;
@@ -736,6 +859,16 @@ if (g_cl.IsFiring(game::TICKS_TO_TIME(g_cl.m_local->m_nTickBase())))
 		&& (!g_cl.m_weapon->m_bPinPulled() || attack || attack2)
 		&& g_cl.m_weapon->m_fThrowTime() > 0.f && g_cl.m_weapon->m_fThrowTime() < g_csgo.m_globals->m_curtime)
 		return;
+
+	if (g_input.GetKeyState(g_menu.main.antiaim.fake_flick.get())) {
+		g_cl.m_body = -145.f;
+		if (fabsf(g_cl.m_cmd->m_side_move) < 5.0f) {
+			if (g_cl.m_cmd->m_buttons & IN_DUCK)
+				g_cl.m_cmd->m_side_move = g_cl.m_cmd->m_tick & 1 ? 3.25f : -3.25f;
+			else
+				g_cl.m_cmd->m_side_move = g_cl.m_cmd->m_tick & 1 ? 5.0f : -5.0f;
+		}
+	}
 
 	m_mode = AntiAimMode::STAND;
 

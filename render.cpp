@@ -23,7 +23,7 @@ void render::init() {
 	hud = Font(XOR("Verdana"), 12, FW_NORMAL, FONTFLAG_ANTIALIAS);
 	cs = Font(XOR("Counter-Strike"), 28, FW_MEDIUM, FONTFLAG_ANTIALIAS | FONTFLAG_DROPSHADOW);
 	logevent = Font(XOR("Verdana"), 12, FW_DONTCARE, FONTFLAG_DROPSHADOW);
-	indicator = Font(XOR("Verdana"), 25, FW_EXTRABOLD, FONTFLAG_OUTLINE);
+	indicator = Font(XOR("Verdana"), 26, FW_BOLD, FONTFLAG_ANTIALIAS | FONTFLAG_DROPSHADOW);
 	damage = Font(XOR("Tahoma"), 15, FW_NORMAL, FONTFLAG_ANTIALIAS | FONTFLAG_DROPSHADOW);
 	spectators = Font(XOR("Tahoma"), 15, FW_NORMAL, FONTFLAG_DROPSHADOW);
 }

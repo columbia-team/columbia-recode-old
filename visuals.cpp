@@ -1845,14 +1845,14 @@ void Visuals::DrawBeams() {
 				// note - dex; possible beam models: sprites/physbeam.vmt | sprites/white.vmt
 				beam_info.m_vecStart = start;
 				beam_info.m_vecEnd = end;
-				beam_info.m_nModelIndex = g_csgo.m_model_info->GetModelIndex(XOR("sprites/purplelaser1.vmt"));
+				beam_info.m_nModelIndex = g_csgo.m_model_info->GetModelIndex(XOR("sprites/white.vmt"));
 				beam_info.m_pszModelName = XOR("sprites/purplelaser1.vmt");
 				beam_info.m_flHaloScale = 0.f;
 				beam_info.m_flLife = g_menu.main.visuals.impact_beams_time.get();
 				beam_info.m_flWidth = 2.f;
 				beam_info.m_flEndWidth = 2.f;
 				beam_info.m_flFadeLength = 0.f;
-				beam_info.m_flAmplitude = 0.f;   // beam 'jitter'.
+				beam_info.m_flAmplitude = 5.f;   // beam 'jitter'.
 				beam_info.m_flBrightness = 255.f;
 				beam_info.m_flSpeed = 0.5f;  // seems to control how fast the 'scrolling' of beam is... once fully spawned.
 				beam_info.m_nStartFrame = 0;
