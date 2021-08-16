@@ -116,4 +116,5 @@ namespace callbacks {
 	bool IsOverrideDamage();
 	void ToggleDMG();
 	void ToggleDT();
+	void teleport_exploit();
 }

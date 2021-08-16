@@ -609,3 +609,7 @@ void callbacks::ToggleDMG() {
 void callbacks::ToggleDT() {
 	g_aimbot.m_double_tap = !g_aimbot.m_double_tap;
 }
+
+void callbacks::teleport_exploit() {
+	g_aimbot.m_teleport_exploit = !g_aimbot.m_teleport_exploit;
+}

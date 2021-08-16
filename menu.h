@@ -22,6 +22,7 @@ public:
 	Checkbox	  zeusbot;
 	Checkbox      debugaim;
 	Colorpicker   debugaimcol;
+	Keybind		  teleport_exploit;
 
 	// col2.
 	Dropdown      zoom;
@@ -112,6 +113,10 @@ public:
 
 		debugaimcol.setup(XOR("color"), XOR("debugaimcol"), colors::white);
 		RegisterElement(&debugaimcol);
+
+		teleport_exploit.setup(XOR("teleport exploit"), XOR("teleport_exploit"));
+		teleport_exploit.SetToggleCallback(callbacks::teleport_exploit);
+		RegisterElement(&teleport_exploit);
 
 		// col2.
 		zoom.setup(XOR("auto scope"), XOR("zoom"), { XOR("off"), XOR("always"), XOR("hitchance fail") });
@@ -874,7 +879,7 @@ public:
 		pen_damage.setup(XOR("penetration crosshair damage"), XOR("pen_damage"));
 		RegisterElement(&pen_damage, 1);
 
-		indicators.setup(XOR("indicators"), XOR("indicators"), { XOR("lby"), XOR("lag compensation"), XOR("ping"), XOR("min dmg"), XOR("double tap")});
+		indicators.setup(XOR("indicators"), XOR("indicators"), { XOR("lby"), XOR("lag compensation"), XOR("ping"), XOR("min dmg"), XOR("double tap"), XOR("teleport")});
 		RegisterElement(&indicators, 1);
 
 		tracers.setup(XOR("grenade simulation"), XOR("tracers"));

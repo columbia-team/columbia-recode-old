@@ -449,7 +449,15 @@ void Visuals::StatusIndicators() {
 	if (indicators.empty())
 		return;
 
-
+	//TELEPORT
+	if (g_menu.main.visuals.indicators.get(5)) {
+		Indicator_t ind{ };
+		ind.color = g_aimbot.m_teleport_exploit ? 0xff15c27b : 0xff0000ff;
+		ind.text = XOR("TELEPORT");
+		indicators.push_back(ind);
+	}
+	if (indicators.empty())
+		return;
 
 	// iterate and draw indicators.
 	for (size_t i{ }; i < indicators.size(); ++i) {

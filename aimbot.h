@@ -147,6 +147,8 @@ public:
 	bool	m_damage_toggle;
 	
 	bool       m_double_tap;
+
+	bool	   m_teleport_exploit;
 		
 public:
 	__forceinline void reset() {
@@ -180,7 +182,9 @@ public:
 public:
 	void scan_anti_freestand();
 	bool CanDT();
+	bool teleport();
 	void DoubleTap();
+	void teleport_exploit();
 	// aimbot.
 	void init();
 	void StripAttack();

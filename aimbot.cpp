@@ -16,6 +16,12 @@ bool Aimbot::CanDT() {
 		&& m_double_tap;
 }
 
+bool Aimbot::teleport() {
+	int idx = g_cl.m_weapon->m_iItemDefinitionIndex();
+	return g_cl.m_local->alive()
+		&& g_csgo.m_cl->m_choked_commands <= 1
+		&& m_teleport_exploit;
+}
 
 void Aimbot::DoubleTap()
 {
@@ -28,6 +34,57 @@ void Aimbot::DoubleTap()
 	if (CanDT() && !g_csgo.m_gamerules->m_bFreezePeriod())
 	{
 		if (m_double_tap)
+		{
+			prev_shift_ticks = 0;
+
+			auto can_shift_shot = CanFireWithExploit(shift_ticks);
+			auto can_shot = CanFireWithExploit(abs(-1 - prev_shift_ticks));
+
+			if (can_shift_shot || !can_shot && !did_shift_before)
+			{
+				prev_shift_ticks = shift_ticks;
+				double_tapped = 0;
+			}
+			else {
+				double_tapped++;
+				prev_shift_ticks = 0;
+			}
+
+			if (prev_shift_ticks > 0)
+			{
+				if (g_cl.m_weapon->DTable() && CanFireWithExploit(prev_shift_ticks))
+				{
+					if (g_cl.m_cmd->m_buttons & IN_ATTACK)
+					{
+						g_cl.m_tick_to_shift = prev_shift_ticks;
+						reset = true;
+					}
+					else {
+						if ((!(g_cl.m_cmd->m_buttons & IN_ATTACK) || !g_cl.m_shot) && reset
+							&& fabsf(g_cl.m_weapon->m_fLastShotTime() - game::TICKS_TO_TIME(g_cl.m_local->m_nTickBase())) > 0.5f) {
+							g_cl.m_charged = false;
+							g_cl.m_tick_to_recharge = shift_ticks;
+							reset = false;
+						}
+					}
+				}
+			}
+			did_shift_before = prev_shift_ticks != 0;
+		}
+	}
+}
+
+void Aimbot::teleport_exploit() 
+{
+	static bool did_shift_before = false;
+	static int double_tapped = 0;
+	static int prev_shift_ticks = 0;
+	static bool reset = false;
+
+	g_cl.m_tick_to_shift = 0;
+	if (teleport() && !g_csgo.m_gamerules->m_bFreezePeriod())
+	{
+		if (m_teleport_exploit)
 		{
 			prev_shift_ticks = 0;
 
