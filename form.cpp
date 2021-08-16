@@ -45,7 +45,7 @@ void Form::draw( ) {
 		// tabs background and border.
 		Rect tabs_area = GetTabsRect( );
 
-		render::rect_filled( tabs_area.x, tabs_area.y, tabs_area.w, tabs_area.h, { 17, 17, 17, m_alpha } );
+		render::rect_filled( tabs_area.x, tabs_area.y, tabs_area.w, tabs_area.h, { 20, 20, 20, m_alpha } );
 		render::rect( tabs_area.x, tabs_area.y, tabs_area.w, tabs_area.h, { 0, 0, 0, m_alpha } );
 		render::rect( tabs_area.x + 1, tabs_area.y + 1, tabs_area.w - 2, tabs_area.h - 2, { 48, 48, 48, m_alpha } );
 
@@ -62,7 +62,7 @@ void Form::draw( ) {
 			// elements background and border.
 			Rect el = GetElementsRect( );
 
-			render::rect_filled( el.x, el.y, el.w, el.h, { 17, 17, 17, m_alpha } );
+			render::rect_filled( el.x, el.y, el.w, el.h, { 20, 20, 20, m_alpha } );
 			render::rect( el.x, el.y, el.w, el.h, { 0, 0, 0, m_alpha } );
 			render::rect( el.x + 1, el.y + 1, el.w - 2, el.h - 2, { 48, 48, 48, m_alpha } );
 

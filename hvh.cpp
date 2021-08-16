@@ -852,19 +852,19 @@ void HVH::SendPacket() {
 				break;
 			}
 			// move.
-			if (*it == 0 && delta > 0.1f && g_cl.m_speed > 0.1f) {
+			if (*it == 1 && delta > 0.1f && g_cl.m_speed > 0.1f) {
 				active = true;
 				break;
 			}
 
 			// air.
-			else if (*it == 1 && ((g_cl.m_buttons & IN_JUMP) || !(g_cl.m_flags & FL_ONGROUND))) {
+			else if (*it == 2 && ((g_cl.m_buttons & IN_JUMP) || !(g_cl.m_flags & FL_ONGROUND))) {
 				active = true;
 				break;
 			}
 
 			// crouch.
-			else if (*it == 2 && g_cl.m_local->m_bDucking()) {
+			else if (*it == 3 && g_cl.m_local->m_bDucking()) {
 				active = true;
 				break;
 			}

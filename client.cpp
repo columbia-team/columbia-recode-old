@@ -549,19 +549,6 @@ void Client::OnTick(CUserCmd* cmd) {
 			m_tick_to_recharge = 13;
 		}
 	}
-
-	g_aimbot.teleport_exploit();
-
-	if (g_aimbot.m_teleport_exploit)
-	{
-		if (!g_aimbot.teleport())
-			m_charged = false;
-		else if (!m_charged && m_tick_to_recharge == 0) {
-			//m_tick_to_recharge = 13;
-			m_tick_to_recharge = 13;
-		}
-	}
-	//teleport_exploit
 }
 
 void Client::SetAngles() {
