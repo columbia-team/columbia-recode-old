@@ -29,7 +29,12 @@ void Client::DrawHUD() {
 	// get framerate.
 	int fps = (int)std::round(1.f / g_csgo.m_globals->m_frametime);
 
-	std::string text = tfm::format(XOR("columbia <%n> | fps: %i | ms: %i | rate: %i"), g_cl.m_user, fps, ms, rate);
+	// get time.
+	time_t t = std::time(nullptr);
+	std::ostringstream time;
+	time << std::put_time(std::localtime(&t), ("%H:%M:%S"));
+
+	std::string text = tfm::format(XOR("columbia <%n> | fps: %i | ms: %i | rate: %i | %H:%M:%S |"), g_cl.m_user, fps, ms, rate, time.str());
 	render::FontSize_t size = render::menu.size(text);
 
 	render::rect_filled(m_width - size.m_width - 20, 10, size.m_width + 10, size.m_height + 2, { 30, 30, 30, 255 });

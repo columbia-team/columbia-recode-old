@@ -535,7 +535,7 @@ public:
 	MultiDropdown weapon;
 	MultiDropdown weapon_mode;
 	Checkbox      ammo;
-	Checkbox      distance;
+	//Checkbox    distance;
 	Colorpicker   ammo_color;
 	Checkbox      lby_update;
 	Colorpicker   lby_update_color;
@@ -608,8 +608,8 @@ public:
 		weapon_mode.setup("", XOR("weapon_mode"), { XOR("text"), XOR("icon") }, false);
 		RegisterElement(&weapon_mode);
 
-		distance.setup(XOR("distance"), XOR("distance"));
-		RegisterElement(&distance);
+		//distance.setup(XOR("distance"), XOR("distance"));
+		//RegisterElement(&distance);
 
 		ammo.setup(XOR("ammo"), XOR("ammo"));
 		RegisterElement(&ammo);

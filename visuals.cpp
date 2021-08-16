@@ -1350,32 +1350,32 @@ void Visuals::DrawPlayer(Player* player) {
 						offset += 6;
 					}
 
-					if (g_menu.main.players.distance.get()) {
-						std::string distance;
-						int dist = (((player->m_vecOrigin() - g_cl.m_local->m_vecOrigin()).length_sqr()) * 0.0625) * 0.001;
+					//if (g_menu.main.players.distance.get()) {
+						//std::string distance;
+						//int dist = (((player->m_vecOrigin() - g_cl.m_local->m_vecOrigin()).length_sqr()) * 0.0625) * 0.001;
 
-						if (dist < 0)
-							distance1337 = 0;
+						//if (dist < 0)
+							//distance1337 = 0;
 
-						if (dist > 0) {
-							distance1337 = 9 + offset3;
-							if (dist > 5) {
-								while (!(dist % 5 == 0)) {
-									dist = dist - 1;
-								}
+						//if (dist > 0) {
+							//distance1337 = 9 + offset3;
+							//if (dist > 5) {
+								//while (!(dist % 5 == 0)) {
+									//dist = dist - 1;
+								//}
 
-								if (dist % 5 == 0)
-									distance = tfm::format(XOR("%i FT"), dist);
-							}
-							else
-								distance = tfm::format(XOR("%i FT"), dist);
+								//if (dist % 5 == 0)
+									//distance = tfm::format(XOR("%i FT"), dist);
+							//}
+							//else
+								//distance = tfm::format(XOR("%i FT"), dist);
 
-							if (dormant)
-								render::esp_small.string(box.x + box.w / 2, box.y + box.h + offset + offset3, { 130, 130, 130, low_alpha }, distance, render::ALIGN_CENTER);
-							else
-								render::esp_small.string(box.x + box.w / 2, box.y + box.h + offset + offset3, { 255, 255, 255, low_alpha }, distance, render::ALIGN_CENTER);
-						}
-					}
+							//if (dormant)
+								//render::esp_small.string(box.x + box.w / 2, box.y + box.h + offset + offset3, { 130, 130, 130, low_alpha }, distance, render::ALIGN_CENTER);
+							//else
+								//render::esp_small.string(box.x + box.w / 2, box.y + box.h + offset + offset3, { 255, 255, 255, low_alpha }, distance, render::ALIGN_CENTER);
+						//}
+					//}
 
 					// text.
 					if (g_menu.main.players.weapon_mode.get(0)) {
@@ -1401,9 +1401,9 @@ void Visuals::DrawPlayer(Player* player) {
 
 						std::string icon = tfm::format(XOR("%c"), m_weapon_icons[weapon->m_iItemDefinitionIndex()]);
 						if (dormant)
-							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 15, { 130,130,130, low_alpha }, icon, render::ALIGN_CENTER);
+							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 13, { 130,130,130, low_alpha }, icon, render::ALIGN_CENTER);
 						else
-							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 15, { 255,255,255, low_alpha }, icon, render::ALIGN_CENTER);
+							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 13, { 255,255,255, low_alpha }, icon, render::ALIGN_CENTER);
 					}
 				}
 			}
