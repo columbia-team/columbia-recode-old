@@ -269,11 +269,11 @@ void Visuals::Hitmarker() {
 
 			// text damage
 			if (!g_shots.iHeadshot)
-				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 18, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
 
 			if (g_shots.iHeadshot == true)
-				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
-				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 18, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
+				render::damage.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 18, { 255, 255, 255, alpha }, out, render::ALIGN_CENTER);
 
 			if (g_shots.iHeadshot == true)
 					render::indicator.string(box.x + box.w / 2, box.y - render::esp.m_size.m_height - 10, { 30, 180, 30, alpha }, "Headshot", render::ALIGN_CENTER);
@@ -1401,9 +1401,9 @@ void Visuals::DrawPlayer(Player* player) {
 
 						std::string icon = tfm::format(XOR("%c"), m_weapon_icons[weapon->m_iItemDefinitionIndex()]);
 						if (dormant)
-							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 13, { 130,130,130, low_alpha }, icon, render::ALIGN_CENTER);
+							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 10, { 130,130,130, low_alpha }, icon, render::ALIGN_CENTER);
 						else
-							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 13, { 255,255,255, low_alpha }, icon, render::ALIGN_CENTER);
+							render::cs.string(box.x + box.w / 2, box.y + box.h + offset - offset1 + distance1337 + 10, { 255,255,255, low_alpha }, icon, render::ALIGN_CENTER);
 					}
 				}
 			}

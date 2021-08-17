@@ -169,7 +169,7 @@ void Shots::OnImpact(IGameEvent* evt) {
 
 	// we did not hit jackshit, or someone else.
 	if (!trace.m_entity || !trace.m_entity->IsPlayer() || trace.m_entity != target)
-		g_notify.add(XOR("shot missed due to spread\n"));
+		g_notify.add(XOR("[ miss ] shot missed due to spread\n"));
 
 
 	// we should have 100% hit this player..
@@ -301,7 +301,7 @@ void Shots::OnHurt(IGameEvent* evt) {
 
 	// print this shit.
 	if (g_menu.main.misc.notifications.get(1)) {
-		std::string out = tfm::format(XOR("fired shot at %s in the %s for %i damage (%i health remaining)\n"), name, m_groups[group], (int)damage, hp);
+		std::string out = tfm::format(XOR("[ shot ] hitted at %s in the %s for %i damage (%i health remaining)\n"), name, m_groups[group], (int)damage, hp);
 		g_notify.add(out);
 	}
 

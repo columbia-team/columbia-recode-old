@@ -9,7 +9,7 @@ ulong_t __stdcall Client::init(void* arg) {
 	if (!g_csgo.init())
 		return 0;
 
-
+	g_notify.add(tfm::format(XOR("welcome to columbia, coded by: krzysztof & judasz\n")));
 
 	return 1;
 }
@@ -85,25 +85,26 @@ void Client::ClanTag()
 			case 4: {   SetClanTag("              colu"); break; }
 			case 5: {   SetClanTag("             colum"); break; }
 			case 6: {   SetClanTag("            columb"); break; }
-			case 7: {   SetClanTag("           columbia"); break; }
-			case 8: {   SetClanTag("          columbia "); break; }
-			case 9: {   SetClanTag("         columbia  "); break; }
-			case 10: {  SetClanTag("        columbia   "); break; }
-			case 11: {  SetClanTag("       columbia    "); break; }
-			case 12: {  SetClanTag("      columbia     "); break; }
-			case 13: {  SetClanTag("     columbia      "); break; }
-			case 14: {  SetClanTag("    columbia       "); break; }
-			case 15: {  SetClanTag("   columbia        "); break; }
-			case 16: {  SetClanTag("  columbia         "); break; }
-			case 17: {  SetClanTag(" columbia          "); break; }
-			case 18: {  SetClanTag("olumbia            "); break; }
-			case 19: {  SetClanTag("lumbia             "); break; }
-			case 20: {  SetClanTag("umbia              "); break; }
+			case 7: {   SetClanTag("           columbi"); break; }
+			case 8: {   SetClanTag("          columbia"); break; }
+			case 9: {   SetClanTag("         columbia "); break; }
+			case 10: {   SetClanTag("       columbia  "); break; }
+			case 11: {  SetClanTag("       columbia   "); break; }
+			case 12: {  SetClanTag("      columbia    "); break; }
+			case 13: {  SetClanTag("     columbia     "); break; }
+			case 14: {  SetClanTag("    columbia      "); break; }
+			case 15: {  SetClanTag("   columbia       "); break; }
+			case 16: {  SetClanTag("  columbia        "); break; }
+			case 17: {  SetClanTag(" columbia         "); break; }
+			case 18: {  SetClanTag("columbia          "); break; }
+			case 19: {  SetClanTag("olumbia            "); break; }
+			case 20: {  SetClanTag("lumbia             "); break; }
+			case 21: {  SetClanTag("umbia              "); break; }
 			case 22: {  SetClanTag("mbia               "); break; }
 			case 23: {  SetClanTag("bia                "); break; }
-			case 24: {  SetClanTag("ia                 "); break; }
-			case 25: {  SetClanTag("a                  "); break; }
-			case 26: {  SetClanTag("                   "); break; }
+			case 25: {  SetClanTag("ia                 "); break; }
+			case 26: {  SetClanTag("a                  "); break; }
+			case 27: {  SetClanTag("                   "); break; }
 			default:;
 			}
 		}
@@ -697,7 +698,7 @@ void Client::print(const std::string text, ...) {
 	va_end(list);
 
 	// print to console.
-	g_csgo.m_cvar->ConsoleColorPrintf(colors::green, XOR("[columbia] "));
+	g_csgo.m_cvar->ConsoleColorPrintf(colors::yellowgreen, XOR("[columbia] "));
 	g_csgo.m_cvar->ConsoleColorPrintf(colors::white, buf.c_str());
 }
 

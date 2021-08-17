@@ -695,7 +695,7 @@ public:
 class VisualsTab : public Tab {
 public:
 	Checkbox      distance;
-	Checkbox      items;
+	Checkbox items;
 	Colorpicker   item_color;
 	Checkbox      ammo;
 	Colorpicker   dropammo_color;
@@ -2343,11 +2343,11 @@ public:
 
 public:
 	void init() {
-		SetPosition(50, 50);
-		SetSize(630, 530);
+		SetPosition(100, 100);
+		SetSize(644, 544);
 
 		// aim.
-		RegisterTab(&aimbot);
+		RegisterTab(&aimbot); 
 		aimbot.init();
 
 		RegisterTab(&antiaim);
