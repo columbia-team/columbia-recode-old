@@ -515,7 +515,6 @@ void Movement::AutoPeek() {
 
 void Movement::QuickStop() {
 
-	if (g_menu.main.movement.quickstop.get()) {
 
 		// convert velocity to angular momentum.
 		ang_t angle;
@@ -533,7 +532,7 @@ void Movement::QuickStop() {
 
 		vec3_t stop = direction * -speed;
 
-		if (g_cl.m_speed > 13.f) {
+		if (g_cl.m_speed > 11.f) {
 			g_cl.m_cmd->m_forward_move = stop.x;
 			g_cl.m_cmd->m_side_move = stop.y;
 		}
@@ -541,7 +540,6 @@ void Movement::QuickStop() {
 			g_cl.m_cmd->m_forward_move = 0.f;
 			g_cl.m_cmd->m_side_move = 0.f;
 		}
-	}
 }
 
 void Movement::FakeWalk() {
