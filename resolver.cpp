@@ -416,7 +416,7 @@ void Resolver::LastMoveLby(LagRecord* record, AimPlayer* data, Player* player)
 
 		record->m_mode = Modes::RESOLVE_UNKNOWM;
 
-		//record->m_eye_angles.y = GetDirectionAngle(player->index(), player);
+		record->m_eye_angles.y = GetDirectionAngle(player->index(), player);
 
 		ResolveYawBruteforce(record, player, data);
 
@@ -426,7 +426,7 @@ void Resolver::LastMoveLby(LagRecord* record, AimPlayer* data, Player* player)
 			const auto at_target_angle = g_cl.m_at_target_angle[index];
 		*/
 
-		//AntiFreestand(player, record->m_eye_angles.y, freestanding_record.left_damage, freestanding_record.right_damage, freestanding_record.right_fraction, freestanding_record.left_fraction, at_target_yaw, data->m_last_move);
+		AntiFreestand(player, record->m_eye_angles.y, freestanding_record.left_damage, freestanding_record.right_damage, freestanding_record.right_fraction, freestanding_record.left_fraction, at_target_yaw, data->m_last_move);
 
 		if (data->m_body != data->m_old_body)
 		{

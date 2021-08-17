@@ -2261,7 +2261,7 @@ public:
 		mode.setup(XOR("safety mode"), XOR("mode"), { XOR("matchmaking"), XOR("no-spread") });
 		RegisterElement(&mode, 1);
 
-		config.setup(XOR("configuration"), XOR("cfg"), { XOR("Auto"), XOR("Scout"), XOR("Awp"), XOR("Heavy pistol"), XOR("Pistol"), XOR("Nospread") });
+		config.setup(XOR("configuration"), XOR("cfg"), { XOR("cfg 1 "), XOR("cfg 2"), XOR("cfg 3"), XOR("cfg 4"), XOR("cfg 5"), XOR("Nospread") });
 		config.RemoveFlags(ElementFlags::SAVE);
 		RegisterElement(&config, 1);
 
